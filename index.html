@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .container{
+            //border:1px solid black;
+            width:40%; 
+            margin:30px auto;
+        }
+
+        .show{
+            display:block;
+        }
+
+        .btns-container{
+            padding:5px;
+        }
+
+        .hide{
+            display:none; 
+        }
+
+        .contents{
+            display:flex;
+        }
+
+        .content {
+            border: 1px solid black;
+            width: 100%;
+            margin: 30px auto;
+            height:100px;
+        }
+        .content p{
+            padding:10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="btns-container">
+            <button data-id="btn1">Tab 1</button>
+            <button data-id="btn2">Tab 2</button>
+            <button data-id="btn3">Tab 3</button>
+        </div>
+        <div class="contents">
+            <div class="content" data-id="btn1"><p>Content belonging to tab 1.</p></div>
+            <div class="content hide" data-id="btn2"><p>Content belonging to tab 2.</p></div>
+            <div class="content hide" data-id="btn3"><p>Content belonging to tab 3.</p></div>
+        </div>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('.btns-container'); 
+        
+
+        buttons.forEach((btn) => {
+            btn.addEventListener('click', function (e) {
+                //console.log(e.target.parentElement.nextElementSibling)
+                console.log(e.target.dataset.id);
+                var id = e.target.dataset.id; 
+                const elements = Array.from(e.target.parentElement.nextElementSibling.children)
+                console.log(elements)
+                elements.forEach((el) => {
+                    console.log(el.dataset.id)
+                    if (el.dataset.id == id) {
+                        el.style.display = 'block'
+                    } else {
+                        el.style.display = 'none'
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>
